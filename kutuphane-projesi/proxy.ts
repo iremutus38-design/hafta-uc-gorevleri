@@ -9,7 +9,7 @@ export default function middleware(request: NextRequest) {
   // Terminalde görmeyi çok istediğimiz o log
   console.log("🚀 Proxy Denetimi:", url);
 
-  // Güvenlik Kontrolü: member-only rotası
+//Çerez okuma
   if (url.startsWith('/api/member-only')) {
     const session = request.cookies.get('user-session');
 
@@ -21,10 +21,18 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  // Güvenlik Header'larını ekleyelim
-  const response = NextResponse.next();
+const response = NextResponse.next();
+
+  // 5.4. Response Header'a Özel Değerler Ekleme
+  // Projenin adını ekliyoruz
   response.headers.set('X-Library-Name', 'Gemini-Digital-Library');
-  response.headers.set('X-Safety-Check', 'Verified-By-Proxy');
+  
+  // Her istek için benzersiz bir ID oluşturuyoruz (Ödevde istenen örnek)
+  const requestId = Math.random().toString(36).substring(7);
+  response.headers.set('X-Request-ID', `req-${requestId}`);
+
+  // Güvenlik için region (bölge) bilgisi ekleyelim
+  response.headers.set('X-App-Region', 'TR-Ankara');
 
   return response;
 }
