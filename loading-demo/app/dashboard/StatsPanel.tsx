@@ -1,5 +1,5 @@
 export default async function StatsPanel() {
-  await new Promise((resolve) => setTimeout(resolve, 4000)) // 4 saniye gecikme
+  await new Promise((resolve) => setTimeout(resolve, 4000)) 
 
   return (
     <div style={{ border: "1px solid #ccc", padding: "10px", marginTop: "20px" }}>
@@ -9,3 +9,5 @@ export default async function StatsPanel() {
     </div>
   )
 }
+
+//async yapısı ve içindeki yapay gecikme ile bir API isteğini simüle ediyor.

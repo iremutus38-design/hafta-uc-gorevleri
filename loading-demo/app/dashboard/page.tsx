@@ -16,9 +16,10 @@ export default function Dashboard() {
             <div style={{ background: "#ddd", height: "20px", width: "200px", marginTop: "10px" }} />
           </div>
         }
-      >
+      >/* Veri hazır olduğunda fallback kalkar ve gerçek StatsPanel gelir. */
         <StatsPanel />
       </Suspense>
     </div>
   )
 }
+//Tüm parçaların birleştiği yer. Suspense kullanarak hangi parçanın ne zaman görüneceğine karar veriyor.

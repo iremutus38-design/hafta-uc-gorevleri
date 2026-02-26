@@ -1,14 +1,24 @@
-export default function DashboardLayout({
-  children,
-  panel1,
-  panel2
-}: any) {
+// app/dashboard/layout.tsx
 
+export default function DashboardLayout({
+  children, // Bu, app/dashboard/page.tsx içeriğini temsil eder.
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 1 }}>{panel1}</div>
-      <div style={{ flex: 1 }}>{children}</div>
-      <div style={{ flex: 1 }}>{panel2}</div>
-    </div>
+    <section style={{ border: "2px solid #333", padding: "15px", borderRadius: "10px" }}>
+      {/* Dashboard'a özel bir başlık veya alt menü buraya gelebilir */}
+      <header>
+        <h2 style={{ color: "#2c3e50" }}>📊 Dashboard Paneli</h2>
+        <p>Buradaki içerik sadece /dashboard rotasında görünür.</p>
+      </header>
+      
+      <hr />
+
+      {/* Asıl sayfa içeriği (page.tsx) burada render edilir */}
+      <main>
+        {children}
+      </main>
+    </section>
   );
 }

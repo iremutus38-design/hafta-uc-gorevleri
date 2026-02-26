@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 export default function PhotoModal() {
   return (
     <div
@@ -14,7 +14,8 @@ export default function PhotoModal() {
     >
       <div style={{ background: "white", padding: 40 }}>
         <h2>Fotoğraf Modal</h2>
-        <a href="/gallery">Kapat</a>
+        <Link rel="stylesheet" href="/gallery" >Kapat 
+        </Link>
       </div>
     </div>
   );

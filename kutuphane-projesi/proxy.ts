@@ -1,42 +1,39 @@
-// proxy.ts (eski adıyla middleware.ts)
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// "middleware" yerine "proxy" veya "default" kullanıyoruz
 export default function middleware(request: NextRequest) {
   const url = request.nextUrl.pathname;
 
-  // Terminalde görmeyi çok istediğimiz o log
-  console.log("🚀 Proxy Denetimi:", url);
+  // 1. GÜNLÜK HAYAT SENARYOSU: URL Güzelleştirme (Maskeleme)
+  // Kullanıcı teknik bir yol olan '/api/books' yerine sadece '/kutuphane' yazsın istiyoruz.
+  if (url === '/kutuphane') {
+    console.log("🎨 Maskeleme Yapılıyor: /kutuphane -> /api/books");
+    return NextResponse.rewrite(new URL('/api/books', request.url));
+  }
 
-//Çerez okuma
+  // 2. GÜVENLİK KONTROLÜ (Mevcut Mantığın)
   if (url.startsWith('/api/member-only')) {
     const session = request.cookies.get('user-session');
 
     if (!session) {
       return new NextResponse(
-        JSON.stringify({ error: "Giris Engellendi: Kartiniz yok!" }),
+        JSON.stringify({ error: "Giris Engellendi: Üye değilsiniz!" }),
         { status: 403, headers: { 'content-type': 'application/json' } }
       );
     }
   }
 
-const response = NextResponse.next();
+  const response = NextResponse.next();
 
-  // 5.4. Response Header'a Özel Değerler Ekleme
-  // Projenin adını ekliyoruz
+  // 3. İZLENEBİLİRLİK (Header Ekleme)
   response.headers.set('X-Library-Name', 'Gemini-Digital-Library');
-  
-  // Her istek için benzersiz bir ID oluşturuyoruz (Ödevde istenen örnek)
   const requestId = Math.random().toString(36).substring(7);
   response.headers.set('X-Request-ID', `req-${requestId}`);
-
-  // Güvenlik için region (bölge) bilgisi ekleyelim
-  response.headers.set('X-App-Region', 'TR-Ankara');
 
   return response;
 }
 
+// Matcher'a yeni '/kutuphane' yolumuzu eklemeyi unutma!
 export const config = {
-  matcher: '/api/:path*',
+  matcher: ['/api/:path*', '/kutuphane'],
 };

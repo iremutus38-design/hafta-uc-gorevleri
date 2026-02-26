@@ -1,3 +1,12 @@
-export default function Panel2Default() {
-  return <div style={{ padding: 20 }}>Panel2</div>;
+import Link from "next/link";
+
+export default function Panel2() {
+  return (
+    <div>
+      <h3>Panel 2 (Mavi)</h3>
+      <Link href="/settings" style={{color: "blue", textDecoration: "underline"}}>
+        Sadece bu paneli değiştir (Ayarlar'a git)
+      </Link>
+    </div>
+  );
 }

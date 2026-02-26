@@ -5,3 +5,5 @@ export default function Loading() {
     </div>
   )
 }
+//İKullanıcı sayfaya girdiğinde loading.tsx anında belirir. Bu, kullanıcının "site çalışıyor" demesini sağlar.
+//İlgili klasördeki page.tsx veya alt klasörler yüklenirken otomatik olarak gösterilir.

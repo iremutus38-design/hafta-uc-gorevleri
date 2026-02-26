@@ -7,3 +7,4 @@ export default function RecentActivity() {
     </div>
   )
 }
+//statik bir yapıdadır. hazır gelen veri yapısındadır.

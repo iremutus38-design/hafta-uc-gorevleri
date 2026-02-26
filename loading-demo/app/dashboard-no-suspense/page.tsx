@@ -10,3 +10,4 @@ export default function DashboardNoSuspense() {
     </div>
   )
 }
+//suspense olmadığı için iki sayfa da aynı anda yüklenir.Yüklenirlerken ekranda yine loading.tsx döner.

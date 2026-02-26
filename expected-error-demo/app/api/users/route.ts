@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server" // Next.js'in standart yanıt formatını içe aktarır.
 
-export async function POST(req: Request) {
+export async function POST(req: Request) { // HTTP POST isteklerini karşılayan asenkron fonksiyon.
   try {
-    const body = await req.json()
-    const { name, email } = body
+    const body = await req.json() // Gelen isteğin gövdesindeki JSON verisini okur.
+    const { name, email } = body // Veri içinden isim ve email alanlarını ayıklar.
 
-    // ✅ EXPECTED ERRORS (Validation)
-
+    // DOĞRULAMA HATALARI (Validation)
+    // İsim veya email boşsa kullanıcıya 400 (Hatalı İstek) hatası döner.
     if (!name || !email) {
       return NextResponse.json(
         { error: "Tüm alanları doldurmanız gerekiyor." },
@@ -14,6 +14,7 @@ export async function POST(req: Request) {
       )
     }
 
+    // Email içinde '@' işareti yoksa geçerli kabul etmez.
     if (!email.includes("@")) {
       return NextResponse.json(
         { error: "Geçerli bir email adresi girin." },
@@ -21,22 +22,24 @@ export async function POST(req: Request) {
       )
     }
 
-    // ❌ Bilinçli sistem hatası simülasyonu
+    // ❌ SİSTEM HATASI SİMÜLASYONU
+    // Özel bir email adresi girildiğinde yapay bir çökme (hata) fırlatır.
     if (email === "error@test.com") {
       throw new Error("Database connection failed")
     }
 
-    // ✅ Başarılı durum
+    // ✅ BAŞARILI DURUM
+    // Her şey yolundaysa 200 (Başarılı) koduyla mesaj döner.
     return NextResponse.json(
-      { message: "Kullanıcı başarıyla oluşturuldu." },
+      { message: "Kullanıcı başarıyla oluşturuldu.JDAHFAHJFAFJ" },
       { status: 200 }
     )
 
   } catch (err) {
-    // Teknik hata loglanır
-    console.error("Server Error:", err)
+    // catch bloğu, yukarıdaki throw veya beklenmedik hataları yakalar.
+    console.error("Server Error:", err) // Hatayı sunucu konsoluna (terminale) basar.
 
-    // Kullanıcıya teknik detay verilmez
+    // Kullanıcıya güvenliği bozmamak için teknik detay vermez, genel bir mesaj döner.
     return NextResponse.json(
       { error: "Sunucu hatası oluştu. Lütfen tekrar deneyin." },
       { status: 500 }
