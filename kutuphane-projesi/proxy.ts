@@ -45,4 +45,4 @@ export default function middleware(request: NextRequest) {
 // Hangi yollarda bu middleware çalışsın?
 export const config = {
   matcher: ['/api/:path*', '/kutuphane'], // api altındaki her şey ve kutuphane yolu
-};
+};//mesela book sayfasıdna güvenlik açısınan gerekli olmayabilirdi ama header özel bilgilerini eklemek için gerekli
