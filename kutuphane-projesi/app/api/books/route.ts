@@ -6,3 +6,4 @@ export async function GET() {
     { id: 2, title: "Suç ve Ceza", author: "Dostoyevski" }
   ]);
 }
+//Ben tarayıcıda /api/books yazdığımda server bunun get isteği olduğunu anlar(tarayıcının varsayılan davranışı) ve bu fonksiyonu çalıştırır.Cevabı json formatına çevirip tarayıcıya gönderir. 

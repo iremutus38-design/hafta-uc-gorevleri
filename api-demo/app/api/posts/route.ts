@@ -13,16 +13,15 @@ export async function GET() {
 // 2. POST İsteği: Yeni veri gönderildiğinde çalışır
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = await request.json();//frontend den backende gelen paket 
 
     // Başlık kontrolü
     if (!body || !body.title) {
       return NextResponse.json({ error: "Başlık boş olamaz" }, { status: 400 });
     }
 
-    // Gerçek bir DB olmasa da başarılı cevabı döner
     return NextResponse.json(
-      { message: "Veri başarıyla alındı", data: body },
+      { message: "Veri başarıyla alındı", data: body }, // Veri ile ilgili tüm bilgiler paket haline getiriliyor. 
       { status: 201 }
     );
   } catch (error) {

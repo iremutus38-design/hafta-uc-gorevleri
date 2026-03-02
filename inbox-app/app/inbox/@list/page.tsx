@@ -11,9 +11,19 @@ export default function ListPage() {
   return (
     <div className="divide-y">
       {MAILS.map((mail) => (
+        //Kullanıcı liste içindeki herhangi bir maile tıkladığında bu kısım çalışır href etiketindeki id 1 e eşitlenir normalde 
+        // app/id ye gider ama layout içindeki @modal klasörünü yakalar Tıklarsan: Modal çalışır. Yenilersen: Modal ölür, tam sayfa gelir. ve (..) işaretiyle id yerine ilgili içeriğin üstüne modal açılır.
+        /* BURASI ÖNEMLİ: 
+    1. Kullanıcı bu linke TIKLADIĞINDA (Soft Navigation), Next.js klasör yapısındaki 
+       (..)[id] klasörünü görür ve sayfayı terk etmeden içeriği @modal slotuna "enjekte" eder.
+    
+    2. Eğer kullanıcı bu sayfayı YENİLERSE (F5) veya linki kopyalayıp yeni sekmeye açarsa, 
+       intercepting (yakalama) çalışmaz; Next.js doğrudan app/[id]/page.tsx dosyasına gider 
+       ve tam sayfa (Full Page) gösterir.
+  */
         <Link 
           key={mail.id} 
-          href={`/inbox/${mail.id}`} // Buraya tıklandığında Intercepting Route devreye girer
+          href={`${mail.id}`} // Buraya tıklandığında Intercepting Route devreye girer
           className="block p-4 hover:bg-blue-50 transition-colors group"
         >
           <div className="flex justify-between items-center">
@@ -26,4 +36,3 @@ export default function ListPage() {
     </div>
   );
 }
-//u dosya "sihrin" gerçekleştiği yerdir. (.) işareti, kullanıcı /inbox/1 linkine tıkladığında sayfayı terk etmeden o rotayı "yakalamasını" sağlar.

@@ -1,13 +1,14 @@
 import React from "react";
 export default function InboxLayout({
-  children, // Standart sayfa içeriği veya (.), (..) ile yakalanan modal buraya gelir
+  children, //Bu children app/inbox içindeki slotlar hariç tüm içeriği kapsar.
   list,     // @list klasöründeki içeriği temsil eden slot
   stats,    // @stats klasöründeki içeriği temsil eden slot
   modal,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode;//childrenin getirdiği içeriğin veri tipini belirtir.Her veri tipi buna dahil olur.
+
   list: React.ReactNode;
-  stats: React.ReactNode;
+  stats: React.ReactNode; 
   modal: React.ReactNode; 
 
 }) {
