@@ -1,7 +1,7 @@
 // app/api/weather/route.ts
 import { NextResponse } from "next/server";
 
-export const revalidate = 10; 
+export const revalidate = 60; 
 
 export async function GET() {
   // Gerçek bir senaryoda burası bir dış API'ya (OpenWeather vb.) istek atar

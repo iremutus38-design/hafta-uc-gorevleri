@@ -5,7 +5,7 @@ export async function GET() {
     message: "Giriş başarılı! Üye kartınız tarayıcıya tanımlandı.",
   });
 
-  // Çerezi ekleyelim
+  // Çerezi ekleyelim Disk e kaydolur 
   response.cookies.set({
     name: "user-session",//key 
     value: "aktif_uye_123",// her kişi için özel olan ismi

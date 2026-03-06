@@ -11,7 +11,7 @@ const dummyPosts = [
 // Belirli bir ID'ye göre veri getiren GET fonksiyonu
 export async function GET(
   request: Request,
-  // Next.js 15+ sürümünde params bir Promise olarak gelir, bu yüzden tip tanımlaması önemlidir
+  //  params bir Promise olarak gelir, bu yüzden tip tanımlaması önemlidir
   { params }: { params: Promise<{ id: string }> } 
 ) {
   // YENİ KURAL: params bir Promise olduğu için içeriğine erişmeden önce await ile çözüyoruz

@@ -1,11 +1,14 @@
-// app/@panel2/settings/page.tsx
+import Link from "next/link";
 
-export default function Panel2SettingsPage() {
+export default function Panel2Settings() {
   return (
-    <div style={{ backgroundColor: "#e0f7fa", padding: "10px", borderRadius: "8px" }}>
-      <h4>⚙️ Panel 2: Ayarlar</h4>
-      <p>Bu panel bağımsız olarak değişti!</p>
-      <a href="/" style={{ color: "blue", fontWeight: "bold" }}>← Geri Dön</a>
+    <div style={{ padding: "10px", border: "1px solid blue" }}>
+      <h3 style={{ color: "blue" }}>Panel 2: Ayarlar Sayfası</h3>
+      <p>Şu an Parallel Route içinde sadece bu slot güncellendi.</p>
+      
+      <Link href="/" style={{ color: "darkblue", fontWeight: "bold" }}>
+        ← Geri Dön (Panel 2'ye Dön)
+      </Link>
     </div>
   );
 }

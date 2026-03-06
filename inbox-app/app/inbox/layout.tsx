@@ -8,7 +8,7 @@ export default function InboxLayout({
   children: React.ReactNode;//childrenin getirdiği içeriğin veri tipini belirtir.Her veri tipi buna dahil olur.
 
   list: React.ReactNode;
-  stats: React.ReactNode; 
+  stats: React.ReactNode;   
   modal: React.ReactNode; 
 
 }) {

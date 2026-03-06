@@ -2,11 +2,7 @@
 import { useState, useEffect } from "react"; 
 export default function PostsPage() {
   const [posts, setPosts] = useState<{ id: number; title: string }[]>([]);
-  //Her ikisi de tarayıcının (Browser) senin sekmen için ayırdığı RAM (bellek) alanında yaşar.use client tarafında işlem yapar
-  //id ve title useState in tutacağı veri tipi
-  //useState de değer ve değeri güncelleyeceğimiz kod olarak kullanıyoruz
   //useState bir hafıza gibi düşünülebilir. setPost useState sayesinde değerleri posts a atabilir 
-  //Yani useState bellekte tutuyor. setPosts da her yeni veri eklendiğinde gidip ondan al demek istiyoruz biz üç noktayla öyle mi
   const [newTitle, setNewTitle] = useState("");//yazılan metnin geçici hafızası
   const [loading, setLoading] = useState(true);//Başta true dönerek verilerin gelmesini bekler
 
@@ -20,6 +16,7 @@ export default function PostsPage() {
       })
       .catch((err) => console.error("Veri çekme hatası:", err)); 
   }, []); //Sondaki boş köşeli parantezle birlikte ilk açıldığında çalış diyoruz. Eklemeseydik sayfa her açıldığında çalışırdı sürekli api çekerdi
+  
   const handleSubmit = async (e: React.FormEvent) => {
     //Kullanıcı butona bastığı andan, ekranda yeni postun göründüğü anı yöneten fonksiyon
     e.preventDefault(); //Tarayıcının sayfayı yenilemesini engeller. yapılan her değişiklik sonucu sayfa refresh olur sürekli onu engeller
